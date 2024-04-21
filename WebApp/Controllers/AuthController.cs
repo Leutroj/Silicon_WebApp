@@ -12,6 +12,9 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     private readonly UserManager<UserEntity> _userManager = userManager;
     private readonly SignInManager<UserEntity> _signInManager = signInManager;
     private readonly AppContext _context = context;
+	private static readonly AppContext context;
+
+	[Route("/signup")]
 
     public IActionResult SignUp()
     {
@@ -19,7 +22,8 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     }
 
     [HttpPost]
-    public async Task<IActionResult> SignUp(SignUpViewModel model)
+	[Route("/signup")]
+	public async Task<IActionResult> SignUp(SignUpViewModel model)
     {
         if (ModelState.IsValid)
         {
@@ -53,8 +57,8 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         return View(model);
     }
 
-
-    public IActionResult SignIn(string returnUrl)
+	[Route("/signin")]
+	public IActionResult SignIn(string returnUrl)
     {
 
 
@@ -63,7 +67,8 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
     }
 
     [HttpPost]
-    public async Task<IActionResult> SignIn(SignInViewModel model, string returnUrl)
+	[Route("/signin")]
+	public async Task<IActionResult> SignIn(SignInViewModel model, string returnUrl)
     {
         if (ModelState.IsValid) 
         {
@@ -74,8 +79,8 @@ public class AuthController(UserManager<UserEntity> userManager, SignInManager<U
         ViewData["StatusMEssage"] = "Incorrect Email or Password";
         return View(model);
     }
-
-    public new async Task<IActionResult> SignOut()
+	[Route("/signout")]
+	public new async Task<IActionResult> SignOut()
     {
         await _signInManager.SignOutAsync();    
         return RedirectToAction("Home", "Default");
