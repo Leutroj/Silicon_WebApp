@@ -1,4 +1,4 @@
-﻿@AccountDetailsViewModel
+﻿@model AccountDetailsViewModel
 @{
 	ViewData["Title"] = "Account Details";
 }
@@ -11,7 +11,7 @@
 				@TempData["StatusMessage"]
 			</div>
 		}
-		<form method="post" asp action="UpdateBasicInfo" asp-controller="Account">
+		<form class="form-basic" method="post" asp action="UpdateBasicInfo" asp-controller="Account">
 			<h5>Basic Info</h5>
 			<div class="form-content">
 				<div id="from-firstname" class="input-group">
@@ -36,6 +36,38 @@
 				<div id="from-bio" class="input-group">
 					<label asp-for="Basic!.Bio"></label>
 					<textarea asp-for="Basic!.Bio"></textarea>
+				</div>
+				<div class="form-button">
+					<button type="reset" class="btn btn-gray">Cancel</button>
+					<button type="submit" class="btn btn-theme">Save changes</button>
+				</div>
+			</div>
+		</form>
+		<form class="form-address" method="post" asp action="UpdateAddressInfo" asp-controller="Account">
+			<h5>Address Info</h5>
+			<div class="form-content">
+				<div id="from-addressline-1" class="input-group">
+					<label asp-for="Address!.AddressLine_1!"></label>
+					<input asp-for="Address!.AddressLine_1!" />
+					<span asp-asp-validation-for="Address!.AddressLine_1!"></span>
+				</div>
+				<div id="from-addressline-2" class="input-group">
+					<label asp-for="Address!.AddressLine_2!"></label>
+					<input asp-for="Address!.AddressLine_2!" />
+				</div>
+				<div id="from-postalcode" class="input-group">
+					<label asp-for="Address!.PostalCode!"></label>
+					<input asp-for="Address!.PostalCode" />
+					<span asp-asp-validation-for="Address!.PostalCode!"></span>
+				</div>
+				<div id="from-city" class="input-group">
+					<label asp-for="Address!.City!"></label>
+					<input asp-for="Address!.City!" />
+				</div>
+
+				<div class="form-button">
+					<button type="reset" class="btn btn-gray">Cancel</button>
+					<button type="submit" class="btn btn-theme">Save changes</button>
 				</div>
 			</div>
 		</form>

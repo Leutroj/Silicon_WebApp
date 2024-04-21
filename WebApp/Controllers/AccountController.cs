@@ -54,7 +54,7 @@ public class AccountController(UserManager<UserEntity> userManager, AppContext c
 			var user = await _userManager.GetUserAsync(User);
 			if (user != null) 
 			{ 
-				user.FirstName = user.FirstName;
+				user.FirstName = user.Basic!.FirstName;
 				user.LastName = user.LastName;
 				user.Email = user.Email;
 				user.PhoneNumber = user.PhoneNumber;
