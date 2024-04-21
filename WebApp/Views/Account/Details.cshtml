@@ -1,3 +1,43 @@
-﻿@{
-
+﻿@AccountDetailsViewModel
+@{
+	ViewData["Title"] = "Account Details";
 }
+
+<section class="account-details">
+	<div class="container">
+				@if(!string.IsNullOrEmpty(TempData["StatusMessage"]?.ToString()))
+		{
+			<div class="alert alert-danger">
+				@TempData["StatusMessage"]
+			</div>
+		}
+		<form method="post" asp action="UpdateBasicInfo" asp-controller="Account">
+			<h5>Basic Info</h5>
+			<div class="form-content">
+				<div id="from-firstname" class="input-group">
+					<label asp-for="Basic!.FirstName"></label>
+					<input asp-for="Basic!.FirstName" />
+					<span asp-asp-validation-for="Basic!.FirstName"></span>
+				</div>
+				<div id="from-lastname" class="input-group">
+					<label asp-for="Basic!.LastName"></label>
+					<input asp-for="Basic!.LastName" />
+					<span asp-asp-validation-for="Basic!.LastName"></span>
+				</div>
+				<div id="from-email" class="input-group">
+					<label asp-for="Basic!.Email"></label>
+					<input asp-for="Basic!.Email" />
+					<span asp-asp-validation-for="Basic!.Email"></span>
+				</div>
+				<div id="from-phone" class="input-group">
+					<label asp-for="Basic!.PhoneNumber"></label>
+					<input asp-for="Basic!.PhoneNumber" />
+				</div>
+				<div id="from-bio" class="input-group">
+					<label asp-for="Basic!.Bio"></label>
+					<textarea asp-for="Basic!.Bio"></textarea>
+				</div>
+			</div>
+		</form>
+	</div>
+</section>
