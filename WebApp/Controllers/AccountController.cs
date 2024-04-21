@@ -54,12 +54,12 @@ public class AccountController(UserManager<UserEntity> userManager, AppContext c
 			var user = await _userManager.GetUserAsync(User);
 			if (user != null) 
 			{ 
-				user.FirstName = user.Basic!.FirstName;
-				user.LastName = user.LastName;
-				user.Email = user.Email;
-				user.PhoneNumber = user.PhoneNumber;
-				user.UserName= user.Email;
-				user.Bio = user.Bio;
+				user.FirstName = model.Basic!.FirstName;
+				user.LastName = model.Basic!.LastName;
+				user.Email = model.Basic!.Email;
+				user.PhoneNumber = model.Basic!.PhoneNumber;
+				user.UserName= model.Basic!.Email;
+				user.Bio = model.Basic!.Bio;
 
 				var result = await _userManager.UpdateAsync(user);
 				if (result.Succeeded) { TempData["StatusMessage"] = "Updated basic information."; }
